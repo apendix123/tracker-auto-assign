@@ -28,7 +28,7 @@ def handler(event, context):
         print ("can't get queue team from api")                    
     for user in teamUsers:
         issues = client.issues.find(filter={'assignee': user['id'], 'resolution': 'empty()', 'queue': issue.queue.key}) 
-        users_dict[user] = len(issues)
+        users_dict[user['id']] = len(issues)
 # выбор исполнителя с минимальным количеством задач
     assign_to = min(users_dict, key=users_dict.get)
 # назначение исполнителя 
